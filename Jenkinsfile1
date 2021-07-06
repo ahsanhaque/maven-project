@@ -1,6 +1,7 @@
 pipeline {
 
 agent any
+def app
 
 stages
 {
@@ -53,7 +54,17 @@ withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
     sh 'mvn install'
 }}}
 	
-   
+   stage('Build image') {         
+       
+            app = docker.build("ahsanhaque/dockerJenkinsImage")    
+   }
+	
+stage('Push image') {
+         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {            
+       	app.push("${env.BUILD_NUMBER}")            
+       	app.push("latest")        
+     }    
+}
 	
 	
 stage('deploy to  tomcat')
