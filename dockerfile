@@ -1,6 +1,6 @@
 FROM tomcat:8.0-alpine
 
-ADD webapp-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/
+ADD /var/lib/jenkins/workspace/build-through-script/webapp/target/webapp.war /usr/local/tomcat/webapps/webapp-1.0-SNAPSHOT.war
 
 EXPOSE 8080
 
