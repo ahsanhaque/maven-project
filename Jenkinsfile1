@@ -74,7 +74,7 @@ withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
             }
         } 
 	stage('Pull Image on Another Server') { 
-            
+            steps {
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
                         dockerImage.pull() 
