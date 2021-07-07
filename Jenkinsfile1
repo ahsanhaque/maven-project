@@ -79,9 +79,10 @@ withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
                         dockerImage.pull() 
-			docker.image(dockerImage).withRun('-d=true -p 8888:8080')
-			
-                    }
+		}
+		docker.image(dockerImage).withRun('-d=true -p 8888:8080'){
+		sh ls
+		}
                 } 
 		
             }
